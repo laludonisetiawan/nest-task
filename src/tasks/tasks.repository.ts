@@ -11,7 +11,7 @@ export class TaskRepository {
   async findOne(id: number) {
     const data = await readFile('tasks.json', 'utf8');
     const tasks = JSON.parse(data);
-    return tasks.find((task: any) => tasks.id === id);
+    return tasks.find((task: any) => task.id === id);
   }
 
   async create(task: string) {

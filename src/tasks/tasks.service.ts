@@ -8,11 +8,11 @@ export class TaskService {
   }
 
   findAll() {
-    this.taskRepo.findAll();
+    return this.taskRepo.findAll();
   }
 
   findOne(id: number) {
-    this.taskRepo.findOne(id);
+    return this.taskRepo.findOne(id);
   }
 
   create(task: string) {
