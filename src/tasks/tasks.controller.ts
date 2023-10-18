@@ -10,28 +10,25 @@ import { CreateTaskDto } from './dtos/create-tasks.dto';
 import { TaskService } from './tasks.service';
 @Controller('tasks')
 export class TasksController {
-  taskService: TaskService;
-
-  constructor() {
-    this.taskService = new TaskService();
-  }
+  constructor(public tasksService: TaskService) {}
 
   @Get()
   listTask() {
-    return this.taskService.findAll();
+    return this.tasksService.findAll();
   }
 
   @Post()
   createTask(@Body() body: CreateTaskDto) {
-    return this.taskService.create(body.content);
+    return this.tasksService.create(body.content);
   }
 
   @Get('/:id')
   async getTask(@Param('id') id: string) {
-    const task = await this.taskService.findOne(parseInt(id));
+    const task = await this.tasksService.findOne(parseInt(id));
 
     if (!task) {
       throw new NotFoundException('task not found');
     }
+    return task;
   }
 }

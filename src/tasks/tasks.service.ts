@@ -1,11 +1,9 @@
 import { TaskRepository } from './tasks.repository';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class TaskService {
-  taskRepo: TaskRepository;
-
-  constructor() {
-    this.taskRepo = new TaskRepository();
-  }
+  constructor(public taskRepo: TaskRepository) {}
 
   findAll() {
     return this.taskRepo.findAll();
